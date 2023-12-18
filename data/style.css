@@ -1,0 +1,181 @@
+body {
+    color: white;
+    background-color: black;
+    font-family: Arial,Verdana,Tahoma;
+}
+
+table { border-spacing:0; }
+
+td { border-bottom: 2px solid black; }
+
+.timing tr:nth-child(even) { background-color: #1c1c1c; }
+.timing tr:hover { background-color: #2f2f2f; }
+.timing .header { font-weight: bold; cursor: default; }
+.header:hover { background-color: black !important; }
+td { vertical-align:top; text-align: center; padding-left: 5px; padding-right: 5px; }
+
+.pits { font-weight: bold; color: #15b5ff; }
+
+.in, .sd, .sf, .si, .sl, .sn, .so, .sr, .ss, .su {
+    width:13px;
+    min-width:13px;
+    max-width:13px;
+    background-size:13px 18px;
+    background-position: center;
+    background-color: black;
+    padding-left:0;
+    padding-right:0;
+}
+/* Down, Up, In, Out needs no background repeat (image) */
+.sd, .su, .si, .so { background-repeat: no-repeat; }
+
+/* In, Out needs a background in case of bigger font */
+.so { background-color: #05b2fd; }
+.si { background-color: #ff0a0a; }
+
+.sf { background-image:url(http://www.apex-timing.com/live-timing/commonv2/images/st_finish.png) }
+.si { background-image:url(http://www.apex-timing.com/live-timing/commonv2/images/st_in.png) }
+.so { background-image:url(http://www.apex-timing.com/live-timing/commonv2/images/st_out.png) }
+.su { background-image:url(http://www.apex-timing.com/live-timing/commonv2/images/st_up.png) }
+.sd { background-image:url(http://www.apex-timing.com/live-timing/commonv2/images/st_down.png) }
+.ss { background-color: #ff0a0a }
+.sr { background-color: #00ff00 }
+.sl { background-color: #17d2eb }
+
+.rkb, .rkw {
+    font-size: .9em;
+    background-repeat: no-repeat;
+    background-position: left;
+    padding-left: 10px;
+    text-align: left;
+}
+
+.rkb {
+    color:#0f0;
+    font-weight:700;
+    background-image:url(http://www.apex-timing.com/live-timing/commonv2/images/Su2.png)
+}
+.rkw {
+    color:red;
+    font-weight:700;
+    background-image:url(http://www.apex-timing.com/live-timing/commonv2/images/Sd2.png)
+}
+.rke {
+    background-image:url(http://www.apex-timing.com/live-timing/commonv2/images/Se2.png);
+    background-repeat:no-repeat;
+    background-position:left;
+    height:13px;
+    width:15px
+}
+
+.raceState {
+    display: inline-block;
+    min-height: 20px;
+    width: 120px;
+    min-width: 120px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+.lg { background-image:url(http://www.apex-timing.com/live-timing/commonv2/images/lightsg.png) }
+.lr { background-image:url(http://www.apex-timing.com/live-timing/commonv2/images/lightsr.png) }
+.ly { background-image:url(http://www.apex-timing.com/live-timing/commonv2/images/lightsy.png) }
+.lf { background-image:url(http://www.apex-timing.com/live-timing/commonv2/images/Ff.png) }
+
+.com_no {
+    width: 40px;
+    display: inline-block;
+    background-color: white;
+    color: #000 !important;
+    clip-path: polygon(10px 0%, 100% 0%, 100% 100%, 0% 100%);
+    text-align: center;
+    margin-right: 10px;
+    padding-left: 5px;
+}
+.comments span[data-flag] {
+    display:inline-block;
+    width:20px;
+    min-width:20px;
+    height:18px;
+    background-size:100%;
+    margin-right:10px;
+    margin-left:10px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.comments span[data-flag=purple],
+.comments span[data-flag=warmup] {
+    background-image:url(http://www.apex-timing.com/live-timing/commonv2/images/flag_warmup.png)
+}
+.comments span[data-flag=green] {
+    background-image:url(http://www.apex-timing.com/live-timing/commonv2/images/flag_green.png)
+}
+.comments span[data-flag=yellow] {
+    background-image:url(http://www.apex-timing.com/live-timing/commonv2/images/flag_yellow.png)
+}
+.comments span[data-flag=red] {
+    background-image:url(http://www.apex-timing.com/live-timing/commonv2/images/t_red.png)
+}
+.comments span[data-flag=chequered] {
+    background-image:url(http://www.apex-timing.com/live-timing/commonv2/images/flag_finish.png)
+}
+.comments span[data-flag=warning] {
+    background-image:url(http://www.apex-timing.com/live-timing/commonv2/images/driver_flag_warning.png)
+}
+.comments span[data-flag=technical] {
+    background-image:url(http://www.apex-timing.com/live-timing/commonv2/images/driver_flag_mechanical.png)
+}
+.comments span[data-flag=black] {
+    background-image:url(http://www.apex-timing.com/live-timing/commonv2/images/driver_flag_black.png)
+}
+.comments span[data-flag=onelap] {
+    background-image:url(http://www.apex-timing.com/live-timing/commonv2/images/driver_flag_onelap.png)
+}
+.comments span[data-flag=invest] {
+    background-image:url(http://www.apex-timing.com/live-timing/commonv2/images/driver_flag_invest.png)
+}
+.comments span[data-flag="5seconds"] {
+    background-image:url(http://www.apex-timing.com/live-timing/commonv2/images/driver_flag_5s_print.png)
+}
+.comments span[data-flag="10seconds"] {
+    background-image:url(http://www.apex-timing.com/live-timing/commonv2/images/driver_flag_10s_print.png)
+}
+.comments span[data-flag=msg] {
+    background-image:url(http://www.apex-timing.com/live-timing/commonv2/images/msg_info.png)
+}
+.comments span[data-flag=msg_error] {
+    background-image:url(http://www.apex-timing.com/live-timing/commonv2/images/msg_error.png)
+}
+.comments span[data-flag=msg_warning] {
+    background-image:url(http://www.apex-timing.com/live-timing/commonv2/images/msg_warning.png)
+}
+.comments span[data-flag="penalty"] {
+    background-image: url(http://www.apex-timing.com/live-timing/commonv2/images/penalty_2.png);
+}
+.comments span[data-flag=msg],
+.comments span[data-flag=msg_error],
+.comments span[data-flag=msg_warning],
+.comments span[data-flag=penalty] {
+    background-size:80%
+}
+
+.session {
+    cursor: pointer;
+    padding: 5px;
+}
+
+.session:hover {
+    background-color: #CCC;
+    color: #1c1c1c;
+}
+.active {
+    background-color: grey;
+}
+
+@keyframes tilt-shaking {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(0.5deg); }
+    50% { transform: rotate(0deg); }
+    75% { transform: rotate(-0.5deg); }
+    100% { transform: rotate(0deg); }
+}
