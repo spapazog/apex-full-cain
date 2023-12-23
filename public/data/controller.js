@@ -1132,8 +1132,8 @@ apexCain.controller('homeController',
                     });
 
                     // Connect to APEX web socket to retrieve the first data
-                    $scope.ws = new WebSocket("ws://www.apex-timing.com:" + (parseInt($scope.port) + 2) + "/");
-
+                    //$scope.ws = new WebSocket("ws://www.apex-timing.com:" + (parseInt($scope.port) + 2) + "/");
+                    $scope.ws = new WebSocket("wss://toile-de-chaussette-ccleouf66.app.codenito.io/"+ $scope.selectedTrack.url);
                     // Retrieve only the first message from APEX web socket
                     $scope.ws.onmessage = function (message) {
                         // Rearm countdown (countdown is received every 30s)
