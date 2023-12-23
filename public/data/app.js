@@ -1,4 +1,4 @@
-let apexCain = angular.module('apexCain', ['ngStorage', 'ngSanitize', 'ngCsv']);
+let apexCain = angular.module('apexCain', ['ngStorage', 'ngSanitize', 'ngCsv', 'angucomplete']);
 
 apexCain.filter('formatTimeLarge', function($filter) {
     return function(_seconds) {

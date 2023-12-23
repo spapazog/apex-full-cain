@@ -5,12 +5,14 @@
 	<title>APEX full cain</title>
     <link rel="icon" type="image/png" href="data/favicon.png" />
     <link rel="stylesheet" href="data/style.css">
+    <link rel="stylesheet" href="data/angucomplete.css">
     <link rel="stylesheet" href="data/styles_flags_live_timing.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.10/ngStorage.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.8.3/angular-sanitize.min.js"></script>
     <script src="data/xml2json.min.js"></script>
     <script src="data/ng-csv.min.js"></script>
+    <script src="data/angucomplete.js"></script>
 
     <script src="data/app.js?v20231108"></script>
     <script src="data/apex.js?v20231108"></script>
@@ -76,9 +78,22 @@
         </div>
 
         <!-- No track selected -->
-        <div ng-show="selectedTrack.url === ''" style="position: fixed; top: 50%; left: 50%; font-size: 150%; font-weight: bold; transform: translate(-50%, -50%);">No track selected</div>
+        <div ng-show="selectedTrack.id === ''" style="width: 50%; position: fixed; top: 50%; left: 50%; font-size: 150%; font-weight: bold; transform: translate(-50%, -50%);">
 
-        <div ng-show="selectedTrack.url !== ''">
+            <!--No track selected-->
+            <h3 style="margin-bottom: 5px;">Apex full cain</h3>
+            <angucomplete id="search-track"
+                          placeholder="Search track"
+                          pause="100"
+                          selectedobject="selectedTrackInput"
+                          localdata="tracks"
+                          searchfields="name"
+                          titlefield="name"
+                          minlength="1"
+                          inputclass="form-control form-control-small"/>
+        </div>
+
+        <div ng-hide="selectedTrack.id === ''">
             <!-- No live timing -->
             <div ng-show="raceState === ''" style="position: fixed; top: 50%; left: 50%; font-size: 150%; font-weight: bold; transform: translate(-50%, -50%);">No live timing</div>
 
@@ -313,10 +328,8 @@
 
         <!-- Other information -->
 		<div style="color: grey; font-size: 70%; position:fixed; bottom: 20px; right: 20px;">
-            <label for="track-selection" ng-click="showTrackSelection = true;">Track:</label>
-            <select id="track-selection" ng-show="showTrackSelection" ng-model="selectedTrack" ng-options="track as track.name for track in tracks | orderBy: 'name'" ng-change="loadApexConfig(true)"></select>
             <span ng-if="selectedTrack.url !== ''">
-                <a ng-href="http://www.apex-timing.com/live-timing/{{selectedTrack.url}}/" target="_blank">http://www.apex-timing.com/live-timing/{{selectedTrack.url}}/</a>
+                Track: <a ng-href="http://www.apex-timing.com/live-timing/{{selectedTrack.url}}/" target="_blank">http://www.apex-timing.com/live-timing/{{selectedTrack.url}}/</a>
             </span>
             <span onclick="moveTrack('track')">
                 {{selectedTrack.name}}

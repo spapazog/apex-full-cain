@@ -33,6 +33,7 @@ apexCain.controller('homeController',
         $scope.sessions = [];
         $scope.tracks = apexTracks.getTracks();
         $scope.showTrackSelection = false;
+        $scope.selectedTrackInput = "";
         $scope.selectedTrack = {
             name: "",
             id: "",
@@ -45,6 +46,13 @@ apexCain.controller('homeController',
             startSvg: "",
             pitSvg: ""
         };
+        $scope.$watch("selectedTrackInput",function(newValue, oldValue){
+            if (newValue !== '') {
+                console.log(newValue);
+                $scope.selectedTrack = newValue.originalObject;
+                $scope.loadApexConfig(false);
+            }
+        });
 
         /***** Countdown functions *****/
         $scope.countdown = function () {
@@ -75,7 +83,7 @@ apexCain.controller('homeController',
             $scope.idState = false;
             $scope.idRank = false;
             $scope.idKart = false;
-            $scope.idDriver = false;
+            $scope.idTeamName = false;
             $scope.idLastLap = false;
             $scope.idBestLap = false;
             $scope.idGap = false;
@@ -109,7 +117,8 @@ apexCain.controller('homeController',
 
             // Close previously opened APEX web socket
             if (typeof $scope.ws !== "undefined") {
-                $scope.ws.close();
+
+                //$scope.ws.close();
             }
         };
 
@@ -197,7 +206,7 @@ apexCain.controller('homeController',
                                 } else if (info._datatype === "sp1") {
                                     $scope.idSpeed = info._dataid;
                                 } else if (info._datatype === "dr") {
-                                    $scope.idDriver = info._dataid;
+                                    $scope.idTeamName = info._dataid;
                                 } else if (info._datatype === "llp") {
                                     $scope.idLastLap = info._dataid;
                                 } else if (info._datatype === "blp" || info.__text === "Meilleur Tour") {
@@ -284,15 +293,16 @@ apexCain.controller('homeController',
 
                             for (const info of line.td) {
                                 if (info.hasOwnProperty('_dataid')) {
-                                    if (checkData(info._dataid, $scope.idDriver)) {
-                                        name = info.__text;
-                                        if (typeof info.__text !== 'undefined' && info.__text.indexOf("[") >= 0) {
-                                            // Driver information
-                                            currentDriver = info.__text;
-                                            currentDriver = currentDriver.substr(0, currentDriver.lastIndexOf('[')).trim();
-                                        } else {
+                                    if (checkData(info._dataid, $scope.idTeamName)) {
+                                        if (typeof info.__text !== 'undefined') {
                                             // Team name
                                             name = info.__text;
+
+                                            if (info.__text.indexOf("[") >= 0) {
+                                                // Driver information
+                                                currentDriver = info.__text;
+                                                currentDriver = currentDriver.substr(0, currentDriver.lastIndexOf('[')).trim();
+                                            }
                                         }
                                     } else if (checkData(info._dataid, $scope.idState)) {
                                         state = info._class;
@@ -1089,6 +1099,8 @@ apexCain.controller('homeController',
             $scope.resetSession();
 
             if ($scope.selectedTrack !== null) {
+                console.log($scope.selectedTrack);
+
                 // Clear parameters
                 $location.search('track', $scope.selectedTrack.id);
                 if (changeTrack) {
@@ -1139,8 +1151,8 @@ apexCain.controller('homeController',
                                 if (info !== "") {
                                     //console.log(info);
 
-                                    if (info.indexOf($scope.idDriver + "|") >= 0) {
-                                        let kartId = info.substr(0, info.indexOf($scope.idDriver));
+                                    if (info.indexOf($scope.idTeamName + "|") >= 0) {
+                                        let kartId = info.substr(0, info.indexOf($scope.idTeamName));
                                         kartId = $scope.kartsMap[kartId];
 
                                         if (info.indexOf("[") >= 0) {
